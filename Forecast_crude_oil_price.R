@@ -12,7 +12,7 @@ data<-Crude_Oil_Prices_Daily
 head(data)
 class(data)
 
-# Coerce monthly_milk to `Date` class ----
+# Coerce monthly_oil to `Date` class ----
 class(data$Date)
 data$Date <- as.Date(data$Date, format = "%m/%d/%Y")
 # Check it worked
@@ -48,8 +48,8 @@ ggseasonplot(monthly_oil_model, year.labels=TRUE
 ggtitle("Seasonal plot")
 
 
-train <- window(x = monthly_milk_ts, start=c(1962), end=c(1970))
-test <- window(x = monthly_milk_ts, start=c(1970))
+train <- window(x = monthly_oil_ts, start=c(1962), end=c(1970))
+test <- window(x = monthly_oil_ts, start=c(1970))
 
 
 # Using ts objects to decompose trends ----
@@ -62,7 +62,7 @@ monthly_oil_stl <- stl(monthly_oil_ts, s.window = "period")
 
 # Generate plots
 plot(monthly_oil_stl)  # top=original data, second=estimated seasonal, third=estimated smooth trend, bottom=estimated irregular element i.e. unaccounted for variation
-monthplot(monthly_oil_ts, choice = "seasonal")  # variation in milk production for each month
+monthplot(monthly_oil_ts, choice = "seasonal")  # variation in oil production for each month
 seasonplot(monthly_oil_ts)
 
 
